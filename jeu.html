@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu du Mort Pion (Tic Tac Toe)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f0f0f0;
+        }
+
+        h1 {
+            margin-top: 30px;
+        }
+
+        #jeu {
+            width: 300px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-gap: 5px;
+        }
+
+        .case {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border: 2px solid #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            cursor: pointer;
+        }
+
+        #message {
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #restart {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Jeu du Mort Pion</h1>
+
+    <div id="jeu">
+        <div class="case" onclick="jouer(0)"></div>
+        <div class="case" onclick="jouer(1)"></div>
+        <div class="case" onclick="jouer(2)"></div>
+        <div class="case" onclick="jouer(3)"></div>
+        <div class="case" onclick="jouer(4)"></div>
+        <div class="case" onclick="jouer(5)"></div>
+        <div class="case" onclick="jouer(6)"></div>
+        <div class="case" onclick="jouer(7)"></div>
+        <div class="case" onclick="jouer(8)"></div>
+    </div>
+
+    <div id="message"></div>
+
+    <button id="restart" onclick="reset()">Recommencer</button>
+
+    <script>
+        let tour = "X";  
+        let grille = ["", "", "", "", "", "", "", "", ""];
+        let fin = false;
+
+        const combinaisonsGagnantes = [
+            [0,1,2], [3,4,5], [6,7,8], 
+            [0,3,6], [1,4,7], [2,5,8], 
+            [0,4,8], [2,4,6]
+        ];
+
+        function jouer(index) {
+            if (grille[index] !== "" || fin) return;
+
+            grille[index] = tour;
+            document.getElementsByClassName("case")[index].innerText = tour;
+
+            if (verifierGagnant()) {
+                document.getElementById("message").innerText = tour + " a gagné !";
+                fin = true;
+                return;
+            }
+
+            if (!grille.includes("")) {
+                document.getElementById("message").innerText = "Match nul !";
+                fin = true;
+                return;
+            }
+
+            tour = tour === "X" ? "O" : "X";
+        }
+
+        function verifierGagnant() {
+            return combinaisonsGagnantes.some(c =>
+                grille[c[0]] === tour &&
+                grille[c[1]] === tour &&
+                grille[c[2]] === tour
+            );
+        }
+
+        function reset() {
+            tour = "X";
+            grille = ["", "", "", "", "", "", "", "", ""];
+            fin = false;
+            document.getElementById("message").innerText = "";
+            const cases = document.getElementsByClassName("case");
+            for (let c of cases) c.innerText = "";
+        }
+    </script>
+
+</body>
+</html>
