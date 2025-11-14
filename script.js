@@ -2,6 +2,8 @@ let tour = "X";
 let grille = ["", "", "", "", "", "", "", "", ""];
 let fin = false;
 
+document.getElementById("tour").innerText = "Tour du joueur : " + tour;
+
 const combinaisonsGagnantes = [
     [0,1,2], [3,4,5], [6,7,8], 
     [0,3,6], [1,4,7], [2,5,8], 
@@ -12,7 +14,10 @@ function jouer(index) {
     if (grille[index] !== "" || fin) return;
 
     grille[index] = tour;
-    document.getElementsByClassName("case")[index].innerText = tour;
+    const cell = document.getElementsByClassName("case")[index];
+    cell.innerText = tour;
+    cell.style.color = (tour === "X") ? "blue" : "red";
+
 
     if (verifierGagnant()) {
         document.getElementById("message").innerText = tour + " a gagné !";
@@ -27,6 +32,8 @@ function jouer(index) {
     }
 
     tour = tour === "X" ? "O" : "X";
+    document.getElementById("tour").innerText = "Tour du joueur : " + tour;
+
 }
 
 function verifierGagnant() {
@@ -41,7 +48,7 @@ function reset() {
     tour = "X";
     grille = ["", "", "", "", "", "", "", "", ""];
     fin = false;
-    document.getElementById("message").innerText = "";
+    document.getElementById("tour").innerText = "Tour du joueur : X";
     const cases = document.getElementsByClassName("case");
     for (let c of cases) c.innerText = "";
 }
