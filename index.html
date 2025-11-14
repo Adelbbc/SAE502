@@ -52,6 +52,11 @@
 <body>
 
     <h1>Jeu du Mort Pion</h1>
+    
+    <div id="scores">
+    <p>Score X : <span id="scoreX">0</span></p>
+    <p>Score O : <span id="scoreO">0</span></p>
+    </div>
 
     <div id="jeu">
         <div class="case" onclick="jouer(0)"></div>
@@ -64,7 +69,7 @@
         <div class="case" onclick="jouer(7)"></div>
         <div class="case" onclick="jouer(8)"></div>
     </div>
-    
+
     <div id="tour"></div>
     <div id="message"></div>
 

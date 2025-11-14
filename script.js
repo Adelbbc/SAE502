@@ -1,5 +1,7 @@
 let tour = "X";  
 let grille = ["", "", "", "", "", "", "", "", ""];
+let scoreX = 0;
+let scoreO = 0;
 let fin = false;
 
 document.getElementById("tour").innerText = "Tour du joueur : " + tour;
@@ -18,9 +20,17 @@ function jouer(index) {
     cell.innerText = tour;
     cell.style.color = (tour === "X") ? "blue" : "red";
 
-
     if (verifierGagnant()) {
         document.getElementById("message").innerText = tour + " a gagné !";
+
+        if (tour === "X") {
+            scoreX++;
+            document.getElementById("scoreX").innerText = scoreX;
+        } else {
+            scoreO++;
+            document.getElementById("scoreO").innerText = scoreO;
+        }
+
         fin = true;
         return;
     }
@@ -31,6 +41,7 @@ function jouer(index) {
         return;
     }
 
+   
     tour = tour === "X" ? "O" : "X";
     document.getElementById("tour").innerText = "Tour du joueur : " + tour;
 
@@ -49,6 +60,18 @@ function reset() {
     grille = ["", "", "", "", "", "", "", "", ""];
     fin = false;
     document.getElementById("tour").innerText = "Tour du joueur : X";
+    document.getElementById("message").innerText = "";
+    
     const cases = document.getElementsByClassName("case");
-    for (let c of cases) c.innerText = "";
+    for (let c of cases) {
+        c.innerText = "";
+        c.style.color = "black"; 
+    }
+}
+
+function resetScores() {
+    scoreX = 0;
+    scoreO = 0;
+    document.getElementById("scoreX").innerText = scoreX;
+    document.getElementById("scoreO").innerText = scoreO;
 }
