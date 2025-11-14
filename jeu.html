@@ -16,7 +16,7 @@
             margin-top: 30px;
         }
 
-        /* --- SCORE --- */
+        /* SCORE */
         #scores {
             font-size: 20px;
             margin-top: 10px;
@@ -89,9 +89,12 @@
         let grille = ["", "", "", "", "", "", "", "", ""];
         let fin = false;
 
-        // SCORES (ils seront mis à jour dans la tâche suivante)
-        let scoreX = 0;
-        let scoreO = 0;
+        // --- SCORES AVEC LOCALSTORAGE ---
+        let scoreX = localStorage.getItem("scoreX") ? parseInt(localStorage.getItem("scoreX")) : 0;
+        let scoreO = localStorage.getItem("scoreO") ? parseInt(localStorage.getItem("scoreO")) : 0;
+
+        document.getElementById("scoreX").innerText = scoreX;
+        document.getElementById("scoreO").innerText = scoreO;
 
         const combinaisonsGagnantes = [
             [0,1,2], [3,4,5], [6,7,8], 
@@ -108,7 +111,17 @@
             if (verifierGagnant()) {
                 document.getElementById("message").innerText = tour + " a gagné !";
 
-                // Plus tard ici on mettra la sauvegarde du score
+                if (tour === "X") {
+                    scoreX++;
+                    localStorage.setItem("scoreX", scoreX);
+                } else {
+                    scoreO++;
+                    localStorage.setItem("scoreO", scoreO);
+                }
+
+                document.getElementById("scoreX").innerText = scoreX;
+                document.getElementById("scoreO").innerText = scoreO;
+
                 fin = true;
                 return;
             }
@@ -135,6 +148,7 @@
             grille = ["", "", "", "", "", "", "", "", ""];
             fin = false;
             document.getElementById("message").innerText = "";
+
             const cases = document.getElementsByClassName("case");
             for (let c of cases) c.innerText = "";
         }
