@@ -48,12 +48,17 @@ function jouer(index) {
 }
 
 function verifierGagnant() {
-    return combinaisonsGagnantes.some(c =>
-        grille[c[0]] === tour &&
-        grille[c[1]] === tour &&
-        grille[c[2]] === tour
-    );
+    for (let c of combinaisonsGagnantes) {
+        if (grille[c[0]] === tour &&
+            grille[c[1]] === tour &&
+            grille[c[2]] === tour) {
+            colorerCasesGagnantes(c); 
+            return true;
+        }
+    }
+    return false;
 }
+
 
 function reset() {
     tour = "X";
@@ -66,6 +71,8 @@ function reset() {
     for (let c of cases) {
         c.innerText = "";
         c.style.color = "black"; 
+        c.style.backgroundColor = "white";
+
     }
 }
 
@@ -74,4 +81,11 @@ function resetScores() {
     scoreO = 0;
     document.getElementById("scoreX").innerText = scoreX;
     document.getElementById("scoreO").innerText = scoreO;
+}
+
+function colorerCasesGagnantes(pattern) {
+    const cases = document.getElementsByClassName("case");
+    pattern.forEach(i => {
+        cases[i].style.backgroundColor = "lightgreen";
+    });
 }
