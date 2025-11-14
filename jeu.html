@@ -68,6 +68,7 @@
         <p>X : <span id="scoreX">0</span> | O : <span id="scoreO">0</span></p>
     </div>
 
+    <!-- JEU -->
     <div id="jeu">
         <div class="case" onclick="jouer(0)"></div>
         <div class="case" onclick="jouer(1)"></div>
@@ -82,6 +83,7 @@
 
     <div id="message"></div>
 
+    <!-- BOUTON RESET -->
     <button id="restart" onclick="reset()">Recommencer</button>
 
     <script>
@@ -127,7 +129,7 @@
             }
 
             if (!grille.includes("")) {
-                document.getElementById("message").innerText = "Match nul !";
+                document.getElementById("message").innerinnerText = "Match nul !";
                 fin = true;
                 return;
             }
@@ -143,14 +145,18 @@
             );
         }
 
+        // --- RESET AMÉLIORÉ ---
         function reset() {
-            tour = "X";
             grille = ["", "", "", "", "", "", "", "", ""];
             fin = false;
+            tour = "X";
+
             document.getElementById("message").innerText = "";
 
             const cases = document.getElementsByClassName("case");
-            for (let c of cases) c.innerText = "";
+            for (let c of cases) {
+                c.innerText = "";
+            }
         }
     </script>
 
