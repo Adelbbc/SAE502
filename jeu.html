@@ -113,6 +113,7 @@
     <div id="message"></div>
 
     <button onclick="reset()">Recommencer</button>
+    <button onclick="resetScores()">Réinitialiser les scores</button>
     <button onclick="ouvrirHistorique()">Historique</button>
 
     <!-- POPUP HISTORIQUE -->
@@ -207,6 +208,22 @@
             for (let c of cases) {
                 c.innerText = "";
             }
+        }
+
+        function resetScores() {
+            scoreX = 0;
+            scoreO = 0;
+            localStorage.setItem("scoreX", 0);
+            localStorage.setItem("scoreO", 0);
+
+            // Si tu veux réinitialiser aussi l’historique, enlève le commentaire ici :
+            // historique = [];
+            // localStorage.setItem("historique", JSON.stringify([]));
+
+            document.getElementById("scoreX").innerText = 0;
+            document.getElementById("scoreO").innerText = 0;
+
+            alert("Scores réinitialisés !");
         }
 
         function ouvrirHistorique() {
