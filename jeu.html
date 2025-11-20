@@ -55,6 +55,14 @@
             font-size: 18px;
             cursor: pointer;
         }
+
+        /* FOOTER */
+        footer {
+            margin-top: 40px;
+            padding: 15px;
+            font-size: 18px;
+            color: #333;
+        }
     </style>
 </head>
 
@@ -85,6 +93,14 @@
 
     <!-- BOUTON RESET -->
     <button id="restart" onclick="reset()">Recommencer</button>
+
+    <!-- FOOTER -->
+    <footer>
+        Site réalisé par : 
+        <strong>Bouzgarrou Mohamed</strong> / 
+        <strong>Seremes--Borchel Sylvain</strong> / 
+        <strong>Mameri Adel</strong>
+    </footer>
 
     <script>
         let tour = "X";  
@@ -129,7 +145,7 @@
             }
 
             if (!grille.includes("")) {
-                document.getElementById("message").innerinnerText = "Match nul !";
+                document.getElementById("message").innerText = "Match nul !";
                 fin = true;
                 return;
             }
@@ -145,7 +161,7 @@
             );
         }
 
-        // --- RESET AMÉLIORÉ ---
+        // --- RESET ---
         function reset() {
             grille = ["", "", "", "", "", "", "", "", ""];
             fin = false;
