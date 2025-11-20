@@ -16,7 +16,6 @@
             margin-top: 30px;
         }
 
-        /* SCORE */
         #scores {
             font-size: 20px;
             margin-top: 10px;
@@ -49,20 +48,44 @@
             font-weight: bold;
         }
 
-        #restart {
-            margin-top: 20px;
+        button {
             padding: 10px 20px;
             font-size: 18px;
+            margin-top: 15px;
             cursor: pointer;
         }
 
-        /* FOOTER */
         footer {
             margin-top: 40px;
             padding: 15px;
             font-size: 18px;
             color: #333;
         }
+
+        /* POPUP HISTORIQUE */
+        #popupHistorique {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            display: none;
+            text-align: left;
+        }
+
+        #popupHistorique h3 {
+            text-align: center;
+        }
+
+        #closePopup {
+            margin-top: 10px;
+            width: 100%;
+        }
+
     </style>
 </head>
 
@@ -70,13 +93,11 @@
 
     <h1>Jeu du Mort Pion</h1>
 
-    <!-- SCORE -->
     <div id="scores">
         <h2>Scores</h2>
         <p>X : <span id="scoreX">0</span> | O : <span id="scoreO">0</span></p>
     </div>
 
-    <!-- JEU -->
     <div id="jeu">
         <div class="case" onclick="jouer(0)"></div>
         <div class="case" onclick="jouer(1)"></div>
@@ -91,10 +112,16 @@
 
     <div id="message"></div>
 
-    <!-- BOUTON RESET -->
-    <button id="restart" onclick="reset()">Recommencer</button>
+    <button onclick="reset()">Recommencer</button>
+    <button onclick="ouvrirHistorique()">Historique</button>
 
-    <!-- FOOTER -->
+    <!-- POPUP HISTORIQUE -->
+    <div id="popupHistorique">
+        <h3>Historique des Parties</h3>
+        <ul id="listeHistorique"></ul>
+        <button id="closePopup" onclick="fermerHistorique()">Fermer</button>
+    </div>
+
     <footer>
         Site réalisé par : 
         <strong>Bouzgarrou Mohamed</strong> / 
@@ -103,16 +130,17 @@
     </footer>
 
     <script>
-        let tour = "X";  
+        let tour = "X";
         let grille = ["", "", "", "", "", "", "", "", ""];
         let fin = false;
 
-        // --- SCORES AVEC LOCALSTORAGE ---
         let scoreX = localStorage.getItem("scoreX") ? parseInt(localStorage.getItem("scoreX")) : 0;
         let scoreO = localStorage.getItem("scoreO") ? parseInt(localStorage.getItem("scoreO")) : 0;
 
         document.getElementById("scoreX").innerText = scoreX;
         document.getElementById("scoreO").innerText = scoreO;
+
+        let historique = JSON.parse(localStorage.getItem("historique")) || [];
 
         const combinaisonsGagnantes = [
             [0,1,2], [3,4,5], [6,7,8], 
@@ -137,6 +165,9 @@
                     localStorage.setItem("scoreO", scoreO);
                 }
 
+                historique.push(tour + " a gagné");
+                localStorage.setItem("historique", JSON.stringify(historique));
+                
                 document.getElementById("scoreX").innerText = scoreX;
                 document.getElementById("scoreO").innerText = scoreO;
 
@@ -146,6 +177,10 @@
 
             if (!grille.includes("")) {
                 document.getElementById("message").innerText = "Match nul !";
+
+                historique.push("Match nul");
+                localStorage.setItem("historique", JSON.stringify(historique));
+
                 fin = true;
                 return;
             }
@@ -161,7 +196,6 @@
             );
         }
 
-        // --- RESET ---
         function reset() {
             grille = ["", "", "", "", "", "", "", "", ""];
             fin = false;
@@ -174,6 +208,24 @@
                 c.innerText = "";
             }
         }
+
+        function ouvrirHistorique() {
+            let ul = document.getElementById("listeHistorique");
+            ul.innerHTML = "";
+
+            historique.forEach(item => {
+                let li = document.createElement("li");
+                li.innerText = item;
+                ul.appendChild(li);
+            });
+
+            document.getElementById("popupHistorique").style.display = "block";
+        }
+
+        function fermerHistorique() {
+            document.getElementById("popupHistorique").style.display = "none";
+        }
+
     </script>
 
 </body>
