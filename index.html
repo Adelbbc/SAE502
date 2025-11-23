@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu du Mort Pion (Tic Tac Toe)</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,6 +14,17 @@
 
         h1 {
             margin-top: 30px;
+        }
+
+        #scores {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        #tour {
+            font-size: 20px;
+            margin-top: 10px;
         }
 
         #jeu {
@@ -41,22 +53,57 @@
             font-weight: bold;
         }
 
-        #restart {
-            margin-top: 20px;
+        button {
             padding: 10px 20px;
             font-size: 18px;
+            margin-top: 15px;
             cursor: pointer;
         }
+
+        footer {
+            margin-top: 40px;
+            padding: 15px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        /* POPUP HISTORIQUE */
+        #popupHistorique {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #333;
+            display: none;
+            text-align: left;
+        }
+
+        #popupHistorique h3 {
+            text-align: center;
+        }
+
+        #closePopup {
+            margin-top: 10px;
+            width: 100%;
+        }
+
     </style>
 </head>
+
 <body>
 
     <h1>Jeu du Mort Pion</h1>
-    
+
     <div id="scores">
-    <p>Score X : <span id="scoreX">0</span></p>
-    <p>Score O : <span id="scoreO">0</span></p>
+        <h2>Scores</h2>
+        <p>X : <span id="scoreX">0</span> | O : <span id="scoreO">0</span></p>
     </div>
+
+    <div id="tour">Tour du joueur : X</div>
 
     <div id="jeu">
         <div class="case" onclick="jouer(0)"></div>
@@ -70,13 +117,28 @@
         <div class="case" onclick="jouer(8)"></div>
     </div>
 
-    <div id="tour"></div>
     <div id="message"></div>
 
-    <button id="restart" onclick="reset()">Recommencer</button>
+    <button onclick="reset()">Recommencer</button>
+    <button onclick="resetScores()">Réinitialiser les scores</button>
+    <button onclick="ouvrirHistorique()">Historique</button>
 
+    <!-- POPUP HISTORIQUE -->
+    <div id="popupHistorique">
+        <h3>Historique des Parties</h3>
+        <ul id="listeHistorique"></ul>
+        <button id="closePopup" onclick="fermerHistorique()">Fermer</button>
+    </div>
+
+    <footer>
+        Site réalisé par : 
+        <strong>Bouzgarrou Mohamed</strong> /
+        <strong>Seremes--Borchel Sylvain</strong> /
+        <strong>Mameri Adel</strong>
+    </footer>
+
+    <!-- SCRIPT -->
     <script src="script.js"></script>
-
 
 </body>
 </html>
