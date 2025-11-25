@@ -53,7 +53,6 @@ La page ne se recharge pas, tout se fait en JavaScript.
 ## 📦 Technologies utilisées
 
 HTML → structure du jeu  
-CSS → style visuel  
 JavaScript → logique du jeu, victoires, scores, localStorage, reset amélioré  
 
 ---
@@ -71,7 +70,7 @@ Groupe SAE — BUT Informatique
 Membres :  
 - Adelbbc  
 - Yahya  
-- (Ajouter d'autres membres si besoin)
+- Sylvain
 
 ---
 
@@ -94,3 +93,4 @@ dans un navigateur comme Chrome, Firefox ou Edge.
 Aucune installation n’est nécessaire.
 
 ---
+
