@@ -1,3 +1,30 @@
+📝 Introduction du projet
+
+Dans le cadre de notre formation, nous avions pour objectif de travailler en groupe afin de réaliser un projet libre, tout en utilisant des outils de gestion et de collaboration professionnelle.
+L’objectif principal n’était pas le résultat final du jeu en lui-même, mais l’apprentissage et la maîtrise des outils de travail en équipe, tels que :
+
+Git et GitHub pour le versioning, les commits et le travail collaboratif,
+
+Trello pour la gestion des tâches, la répartition du travail et le suivi d’avancement,
+
+la communication en groupe et l'organisation du projet.
+
+Pour appliquer ces outils, nous avons choisi de développer un petit jeu web : un Morpion (Tic Tac Toe) programmé en HTML, CSS et JavaScript. Le projet étant libre, nous avons pu nous concentrer sur :
+
+la mise en place d’une structure simple,
+
+l’écriture d’un code propre et fonctionnel,
+
+l’amélioration de l’interface utilisateur,
+
+et la gestion du travail d’équipe avec des outils professionnels.
+
+Ce projet nous a permis de nous initier au travail collaboratif, de mieux comprendre le fonctionnement de Git en équipe, et d’apprendre à organiser un projet complet du début à la fin.
+
+Le travail a été réalisé par : Mohamed Bouzgarrou, Sylvain Seremes-Borchel, et Adel Mameri.
+
+
+
 # 🎮 SAE502 — Jeu du Mort Pion (Tic Tac Toe)
 
 Ce projet est une implémentation du jeu du Mort Pion / Tic Tac Toe réalisée dans le cadre de la SAE 502.  
