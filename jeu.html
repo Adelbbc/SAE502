@@ -54,58 +54,50 @@
             color: #111827;
         }
     
-        /* Carte qui contient la grille + message + boutons (visuel via #jeu) */
+        /* GRILLE : simple et bien visible */
         #jeu {
-            width: 320px;
-            margin: 25px auto 10px;
-            padding: 16px;
-            background: #f9fafb;
-            border-radius: 20px;
-            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.35);
+            width: 300px;
+            margin: 40px auto 10px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-gap: 8px;
+            gap: 8px;
         }
     
         .case {
             width: 100px;
             height: 100px;
             background: #ffffff;
-            border: 2px solid #d1d5db;
-            border-radius: 16px;
+            border: 3px solid #111827;
+            border-radius: 18px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 60px;
             cursor: pointer;
-            transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            transition: background 0.2s ease, transform 0.1s ease,
+                        box-shadow 0.2s ease, border-color 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
     
         .case:hover {
             background: #e5f2ff;
             border-color: #3b82f6;
             transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(37, 99, 235, 0.35);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
         }
     
         .case:active {
             transform: translateY(0);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
             background: #dbeafe;
         }
     
         #message {
             font-size: 20px;
-            margin-top: 18px;
+            margin-top: 15px;
             font-weight: bold;
-            color: #111827;
-            padding: 8px 16px;
-            background: rgba(249, 250, 251, 0.95);
-            border-radius: 999px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
-            display: inline-block;
-            min-height: 30px;
+            color: #f9fafb;
+            min-height: 26px; /* pour éviter le rond vide */
         }
     
         button {
@@ -139,7 +131,7 @@
             padding: 12px 20px;
             font-size: 16px;
             color: #e5e7eb;
-            background: rgba(15, 23, 42, 0.45);
+            background: rgba(15, 23, 42, 0.7);
             border-radius: 999px;
             backdrop-filter: blur(8px);
             box-shadow: 0 8px 24px rgba(15, 23, 42, 0.8);
@@ -196,11 +188,9 @@
             box-shadow: 0 8px 20px rgba(220, 38, 38, 0.45);
         }
     
-        /* Responsive : mobile */
         @media (max-width: 480px) {
             #jeu {
                 width: 90vw;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
     
             .case {
@@ -209,17 +199,13 @@
                 font-size: 48px;
             }
     
-            button {
+            button, footer {
                 width: 90vw;
                 max-width: 320px;
             }
-    
-            footer {
-                width: 90vw;
-                font-size: 14px;
-            }
         }
     </style>
+    
     
 </head>
 
